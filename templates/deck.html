@@ -1,0 +1,77 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
+<body>
+
+
+
+    <h1>Want to leave a comment to one deck? Do it here!</h1>
+        <form method="POST" action="/addcmt">
+        <p> Your user id:<input type="int" name="username_cmt"> Deck's id, which you want to comment on<input type="int" name="deckname_cmt"> Your comment: <input type="text" name="cmt_content"><input type="submit" value=" Submit your comment to this deck"></p>
+        </form>    
+
+    <h1>Want to publish a deck? Do it here!</h1>
+        <p> --Register a deck name if this is a new deck: </p>
+        <form method="POST" action="/adddeck">
+        <p> Deck id(Must be an integer):<input type="int" name="deckname_add"><input type="submit" value=" This is the deck's id!"></p>
+        </form>         
+
+        <p>(You have to submit the deck in a card-by-card manner.)--Add a card to this deck, under your user id.</p>
+        <form method="POST" action="/addcard2deck">
+        <p> Your user id:<input type="int" name="username_addcd">Deck id:<input type="int" name="deckname_addcd">Card name:
+
+              <select name="cardname_addcd">
+                  {% for n in data_card %}
+                          <option value="{{n[0]}}">{{n[0]}}</option>
+                  {% endfor %}
+              </select>
+
+          <input type="submit" value=" Submit this card to the deck of interest!"></p>
+        </form>  
+
+  <h1>Shared deck list</h1>
+  <div>
+    {% for n in data_deck[1] %}
+    <h1 style="color:blue">DECK ID:{{data_deck[0][n][0]}}</h1>
+
+    <details>
+      <summary>----deck list</summary>
+      {% for m in data_deck2[1][n] %}
+          <div>{{m[1]}}</div>
+      {% endfor %}
+    </details>
+
+    <details>
+      <summary>----deck upload date</summary>
+      <span>{{data_deck[0][n][1]}}</span>
+    </details> 
+
+    <details>
+      <summary>----author user id</summary>
+          {{ data_deck2[2][n] }}
+    </details>
+
+    <details>
+      <summary>----Comments given by users</summary>
+          {% for k in data_deck3[1][n] %}
+            User <div style="color:red">{{k[0]}} </div> at time {{k[1]}} says <div style="color:green">" {{k[2]}}".</div>
+          {% endfor %} 
+    </details>
+
+
+
+    {% endfor %}
+  </div>
+
+
+
+</body>
+
+
+</html>

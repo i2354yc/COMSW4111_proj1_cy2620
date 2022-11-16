@@ -1,0 +1,40 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
+<body>
+<details>
+    <summary>Click to see author information</summary>
+    <span>Chen Yang, email: cy2620@columbia.edu</span>
+</details>
+
+
+  <h1>A mini Database for Magic: the Gathering decks</h1>
+  <img src="https://mktg-assets.tcgplayer.com/content/opengraph/MTG-Urza-Planeswalker-BRO.jpg" alt="Urza" />
+  <h1>Below is all the registered users' user id and email(if provided):</h1>
+  <div>User name , User email</div>
+  <div>
+    {% for n in data %}
+    <div>{{n[0]}} , {{n[1]}}</div>
+    {% endfor %}
+  </div>
+
+<p><a href="/card">Go to the card pool.</a></p>
+
+<p><a href="/deck">View shared decks.</a></p>
+
+<h1>Want to be a user? Fill the following question to register. (Email address is optional.)</h1>
+<form method="POST" action="/add">
+<p>Your id(must be different from above users'): <input type="int" name="name"> Your email: <input type="text" name="em"><input type="submit" value=" Add me!"></p>
+</form>
+
+
+</body>
+
+
+</html>

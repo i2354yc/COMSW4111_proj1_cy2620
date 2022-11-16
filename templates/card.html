@@ -1,0 +1,31 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
+<body>
+
+<h1>Want to expand the card pool? Do it here!</h1>
+    <form method="POST" action="/addcard">
+    <p> Card name:<input type="text" name="cardname_add"> Card price (in USD):<input type="float" name="cardprice_add"> <input type="submit" value=" Add this card"></p>
+    </form>    
+
+  <h1>Playable Card list</h1>
+	<div>Card name , Card price(in USD)</div>
+  <div>
+    {% for n in data_card %}
+    <div>{{n[0]}} , {{n[1]}}</div>
+    {% endfor %}
+  </div>
+
+
+
+
+</body>
+
+
+</html>
