@@ -19,16 +19,6 @@ engine = create_engine(DATABASEURI)
 # Here we create a test table and insert some values in it
 
 
-engine.execute("""DROP TABLE IF EXISTS test;""")
-engine.execute("""CREATE TABLE IF NOT EXISTS test (
-  id serial,
-  name text
-);""")
-engine.execute("""INSERT INTO test(name) VALUES ('grace hopper'), ('alan turing'), ('ada lovelace');""")
-
-engine.execute("""INSERT INTO test VALUES (10, 'NEW grace hopper');""")
-
-
 @app.before_request
 def before_request():
   try:
@@ -125,9 +115,6 @@ def deck():
   return render_template("deck.html", **context, **context2, **context3, **context4)
 
 
-
-
-# Example of adding new data to the database
 @app.route('/add', methods=['POST'])
 def add():
   name = int(request.form['name'])
